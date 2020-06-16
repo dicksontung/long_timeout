@@ -5,7 +5,7 @@ FROM scratch AS runtime
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /usr/local/go/lib/time/zoneinfo.zip /
 ENV ZONEINFO=/zoneinfo.zip
-COPY ./out/server /app/server
+COPY ./out/client /app/client
 EXPOSE 8080/tcp
 WORKDIR /app
-ENTRYPOINT  ["./server"]
+ENTRYPOINT  ["./client"]
