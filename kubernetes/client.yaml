@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: saturation-client
+  name: saturation-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saturation-client
+  template:
+    metadata:
+      labels:
+        app: saturation-client
+    spec:
+      containers:
+      - image: dixont/ws_client:v1.0.4
+        name: ws-client
+        args:
+          - --addr
+          - ws.sattest.moneylion.com
+          - --conns
+          - "500"
+          - --timeout
+          - "300s"
+#        resources:
+#          limits:
+#            cpu: 10m
+#            memory: 1Mi
+#          requests:
+#            cpu: 1m
+#            memory: 0.5Mi
